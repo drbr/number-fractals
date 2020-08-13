@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <label id="carsLabel">Choose a car: </label>
@@ -16,5 +16,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
