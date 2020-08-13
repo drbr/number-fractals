@@ -1,18 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <label for="cars">Choose a car:</label>
-
-      <select name="cars" id="cars">
+      <label id="carsLabel">Choose a car: </label>
+      <select name="cars" id="cars" aria-labelledby="carsLabel">
         <option value="volvo">Volvo</option>
         <option value="saab">Saab</option>
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
+
+      <p>Can I see this?</p>
     </div>
   );
 }
