@@ -43,12 +43,14 @@ export class PluginManager<P extends BasePlugin> {
   /**
    * Returns the names of all registered plugins, in the order in which they were registered
    */
-  public getPluginNamesInOrder(): ReadonlyArray<string> {
-    return this.registeredPlugins.map((p) => p.registrationKey);
+  public getPluginsInOrder(): ReadonlyArray<P> {
+    return this.registeredPlugins;
   }
 
   public getPluginByName(name: string): P | undefined {
-    const plugin = this.registeredPlugins.find((p) => p.registrationKey === name);
+    const plugin = this.registeredPlugins.find(
+      (p) => p.registrationKey === name
+    );
     return plugin;
   }
 }

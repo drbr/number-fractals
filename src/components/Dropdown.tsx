@@ -1,12 +1,14 @@
 import * as React from "react";
 import { generateUniqueId } from "../utils/generateId";
 
+export type DropdownItem = {
+  value: string;
+  name: string;
+};
+
 export type DropdownProps = {
   label: string;
-  items: ReadonlyArray<{
-    value: string;
-    name: string;
-  }>;
+  items: ReadonlyArray<DropdownItem>;
 };
 
 export function Dropdown(props: DropdownProps) {
