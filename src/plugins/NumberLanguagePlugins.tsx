@@ -1,3 +1,6 @@
+import { PluginManager } from "./PluginManager";
+import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
+
 export type NumberLanguagePluginInput = {
   start: number;
   end: number;
@@ -12,6 +15,11 @@ export type NumberLanguagePluginOutput = ReadonlyArray<{
 export type NumberLanguagePlugin = (
   input: NumberLanguagePluginInput
 ) => NumberLanguagePluginOutput;
+
+export const NumberLanguagePluginManager = new PluginManager({
+  name: "Arabic Numerals",
+  plugin: ArabicNumerals,
+});
 
 // TODO:
 // Make a plugin manager for number languages,

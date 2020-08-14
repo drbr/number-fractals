@@ -10,7 +10,7 @@ export class PluginManager<P> {
    * Creates a new plugin manager, optionally registering the given plugins.
    * @param plugins
    */
-  public constructor(plugins?: RegisteredPlugin<P>[]) {
+  public constructor(...plugins: RegisteredPlugin<P>[]) {
     if (plugins) {
       this.registerPlugins(plugins);
     }
