@@ -1,5 +1,8 @@
 import { PluginManager, BasePlugin } from "./PluginManager";
-import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
+import {
+  ArabicNumerals,
+  NegativeNumerals,
+} from "../numberLanguage/ArabicNumerals";
 
 export type NumberLanguagePluginInput = {
   start: number;
@@ -23,11 +26,18 @@ export interface NumberLanguagePlugin extends BasePlugin {
 
 export const NumberLanguagePluginManager = new PluginManager<
   NumberLanguagePlugin
->({
-  registrationKey: "arabic",
-  userVisibleName: "Arabic Numerals",
-  generateWordsForNumbers: ArabicNumerals,
-});
+>(
+  {
+    registrationKey: "arabic",
+    userVisibleName: "Arabic Numerals",
+    generateWordsForNumbers: ArabicNumerals,
+  },
+  {
+    registrationKey: "negative",
+    userVisibleName: "Negative numbers",
+    generateWordsForNumbers: NegativeNumerals,
+  }
+);
 
 // TODO:
 // Make a plugin manager for number languages,
