@@ -1,4 +1,4 @@
-import { PluginManager } from "./PluginManager";
+import { PluginManager, BasePlugin } from "./PluginManager";
 import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
 
 export type NumberLanguagePluginInput = {
@@ -11,14 +11,22 @@ export type NumberLanguagePluginOutput = ReadonlyArray<{
   numberAsWords: string;
 }>;
 
-/** Return the numbers from start to end, inclusive, in the language. */
-export type NumberLanguagePlugin = (
+export type GenerateWordsForNumbers = (
   input: NumberLanguagePluginInput
 ) => NumberLanguagePluginOutput;
 
-export const NumberLanguagePluginManager = new PluginManager({
-  name: "Arabic Numerals",
-  plugin: ArabicNumerals,
+/** Return the numbers from start to end, inclusive, in the language. */
+export interface NumberLanguagePlugin extends BasePlugin {
+  userVisibleName: string;
+  generateWordsForNumbers: GenerateWordsForNumbers;
+}
+
+export const NumberLanguagePluginManager = new PluginManager<
+  NumberLanguagePlugin
+>({
+  registrationKey: "arabic",
+  userVisibleName: "Arabic Numerals",
+  generateWordsForNumbers: ArabicNumerals,
 });
 
 // TODO:

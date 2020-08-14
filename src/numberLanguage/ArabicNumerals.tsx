@@ -1,7 +1,7 @@
-import { NumberLanguagePlugin } from "../plugins/NumberLanguagePlugins";
 import range from "./Range";
+import { GenerateWordsForNumbers } from "../plugins/NumberLanguagePlugins";
 
-export const ArabicNumerals: NumberLanguagePlugin = ({ start, end }) => {
+export const ArabicNumerals: GenerateWordsForNumbers = ({ start, end }) => {
   const numbers = range({ start, end });
   return numbers.map((x) => ({
     value: x,

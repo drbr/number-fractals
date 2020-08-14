@@ -1,16 +1,16 @@
-type RegisteredPlugin<P> = {
-  name: string;
-  plugin: P;
+/** The type from which all plugins must extend */
+export type BasePlugin = {
+  registrationKey: string;
 };
 
-export class PluginManager<P> {
-  private registeredPlugins: RegisteredPlugin<P>[] = [];
+export class PluginManager<P extends BasePlugin> {
+  private registeredPlugins: P[] = [];
 
   /**
    * Creates a new plugin manager, optionally registering the given plugins.
    * @param plugins
    */
-  public constructor(...plugins: RegisteredPlugin<P>[]) {
+  public constructor(...plugins: P[]) {
     if (plugins) {
       this.registerPlugins(plugins);
     }
@@ -21,22 +21,22 @@ export class PluginManager<P> {
    * @param name Name of the plugin. Should be unique to all the plugins in this manager
    * @param plugin The plugin
    */
-  public registerPlugin(name: string, plugin: P): void {
-    if (this.getPluginByName(name)) {
+  public registerPlugin(plugin: P): void {
+    if (this.getPluginByName(plugin.registrationKey)) {
       throw new Error(
-        `Cannot register plugin; a plugin with name ${name} has already been registered.`
+        `Cannot register plugin; a plugin with name ${plugin.registrationKey} has already been registered.`
       );
     }
-    this.registeredPlugins.push({ name, plugin });
+    this.registeredPlugins.push({ ...plugin });
   }
 
   /**
    * Registers multiple plugins, as if `registerPlugin` were called multiple times.
    * @param plugins
    */
-  public registerPlugins(plugins: RegisteredPlugin<P>[]): void {
+  public registerPlugins(plugins: P[]): void {
     for (const p of plugins) {
-      this.registerPlugin(p.name, p.plugin);
+      this.registerPlugin(p);
     }
   }
 
@@ -44,11 +44,11 @@ export class PluginManager<P> {
    * Returns the names of all registered plugins, in the order in which they were registered
    */
   public getPluginNamesInOrder(): ReadonlyArray<string> {
-    return this.registeredPlugins.map((p) => p.name);
+    return this.registeredPlugins.map((p) => p.registrationKey);
   }
 
   public getPluginByName(name: string): P | undefined {
-    const rp = this.registeredPlugins.find((p) => p.name === name);
-    return rp?.plugin;
+    const plugin = this.registeredPlugins.find((p) => p.registrationKey === name);
+    return plugin;
   }
 }
