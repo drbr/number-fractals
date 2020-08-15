@@ -19,23 +19,11 @@ export const SortPluginManager = new PluginManager<SortPlugin>(
 );
 
 function sortAscending(items: NumberWithWord[]): NumberWithWord[] {
-  items.sort((a, z) =>
-    a.numberAsWords < z.numberAsWords
-      ? -1
-      : a.numberAsWords > z.numberAsWords
-      ? 1
-      : 0
-  );
+  items.sort((a, z) => a.numberAsWords.localeCompare(z.numberAsWords));
   return items;
 }
 
 function sortDescending(items: NumberWithWord[]): NumberWithWord[] {
-  items.sort((a, z) =>
-    a.numberAsWords < z.numberAsWords
-      ? 1
-      : a.numberAsWords > z.numberAsWords
-      ? -1
-      : 0
-  );
+  items.sort((a, z) => z.numberAsWords.localeCompare(a.numberAsWords));
   return items;
 }
