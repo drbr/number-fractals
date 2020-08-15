@@ -18,10 +18,9 @@ export function Dropdown(props: DropdownProps) {
 
   return (
     <div>
-      <label id={uniqueId + "-label"}>{props.label}</label>
+      <label id={uniqueId}>{props.label}</label>
       <select
-        id={uniqueId}
-        aria-labelledby={uniqueId + "-label"}
+        aria-labelledby={uniqueId}
         onChange={(event) => props.onChange(event.target.value)}
         value={props.selectedValue}
       >
