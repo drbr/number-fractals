@@ -1,11 +1,11 @@
 import * as React from "react";
 import "./App.css";
 import { NumberLanguagePluginManager } from "./plugins/NumberLanguagePlugins";
-import { PluginSelectorDropdown } from "./components/PluginSelectorDropdown";
-import { generateUniqueId } from "./utils/generateId";
 import { InputArea, InputAreaProps } from "./InputArea";
+import { SortPluginManager } from "./plugins/SortPlugins";
 
 const languagePlugins = NumberLanguagePluginManager;
+const sortPlugins = SortPluginManager;
 
 const initialRangeStart = 1;
 const initialRangeEnd = 10;
@@ -16,6 +16,10 @@ export function App() {
 
   const [currentLanguagePlugin, setCurrentLanguagePlugin] = React.useState(
     languagePlugins.getPluginsInOrder()[0]
+  );
+
+  const [currentSortPlugin, setCurrentSortPlugin] = React.useState(
+    sortPlugins.getPluginsInOrder()[0]
   );
 
   const wordsForNumbers = React.useMemo(
@@ -31,6 +35,9 @@ export function App() {
     languagePlugins,
     currentLanguagePlugin,
     setCurrentLanguagePlugin,
+    sortPlugins,
+    currentSortPlugin,
+    setCurrentSortPlugin,
     rangeStart,
     setRangeStart,
     rangeEnd,
@@ -40,6 +47,7 @@ export function App() {
   return (
     <div className="App">
       <InputArea {...inputAreaProps} />
+
       <div className="Chosen">
         Chosen selections:
         <ul>
@@ -47,6 +55,7 @@ export function App() {
           <li>
             Number range: [ {rangeStart}, {rangeEnd} ]
           </li>
+          <li>Sort: {currentSortPlugin.userVisibleName}</li>
         </ul>
       </div>
 

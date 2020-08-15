@@ -1,6 +1,7 @@
 /** The type from which all plugins must extend */
 export type BasePlugin = {
   registrationKey: string;
+  userVisibleName: string;
 };
 
 export class PluginManager<P extends BasePlugin> {

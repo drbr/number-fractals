@@ -5,12 +5,18 @@ import {
   NumberLanguagePlugin,
 } from "./plugins/NumberLanguagePlugins";
 import { generateUniqueId } from "./utils/generateId";
+import { SortPlugin, SortPluginManager } from "./plugins/SortPlugins";
 
 export type InputAreaProps = {
   languagePlugins: typeof NumberLanguagePluginManager;
   currentLanguagePlugin: NumberLanguagePlugin;
   setCurrentLanguagePlugin: React.Dispatch<
     React.SetStateAction<NumberLanguagePlugin>
+  >;
+  sortPlugins: typeof SortPluginManager;
+  currentSortPlugin: SortPlugin<unknown>;
+  setCurrentSortPlugin: React.Dispatch<
+    React.SetStateAction<SortPlugin<unknown>>
   >;
   rangeStart: number;
   setRangeStart: React.Dispatch<React.SetStateAction<number>>;
@@ -47,6 +53,13 @@ export function InputArea(props: InputAreaProps) {
         step={10}
         value={props.rangeEnd}
         onChange={(event) => props.setRangeEnd(Number(event.target.value))}
+      />
+
+      <PluginSelectorDropdown
+        label="Sort: "
+        pluginManager={props.sortPlugins}
+        selectedPlugin={props.currentSortPlugin}
+        onChange={props.setCurrentSortPlugin}
       />
     </div>
   );

@@ -18,7 +18,6 @@ export type GenerateWordsForNumbers = (
 
 /** Return the numbers from start to end, inclusive, in the language. */
 export interface NumberLanguagePlugin extends BasePlugin {
-  userVisibleName: string;
   generateWordsForNumbers: GenerateWordsForNumbers;
 }
 

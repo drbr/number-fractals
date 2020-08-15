@@ -2,16 +2,14 @@ import { BasePlugin, PluginManager } from "../plugins/PluginManager";
 import React from "react";
 import { Dropdown } from "./Dropdown";
 
-type DropdownCompatiblePlugin = BasePlugin & { userVisibleName: string };
-
-export type PluginSelectorDropdown<P extends DropdownCompatiblePlugin> = {
+export type PluginSelectorDropdown<P extends BasePlugin> = {
   label: string;
   pluginManager: PluginManager<P>;
   selectedPlugin: P;
   onChange: (plugin: P) => void;
 };
 
-export function PluginSelectorDropdown<P extends DropdownCompatiblePlugin>(
+export function PluginSelectorDropdown<P extends BasePlugin>(
   props: PluginSelectorDropdown<P>
 ) {
   const { pluginManager, selectedPlugin, onChange } = props;
