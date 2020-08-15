@@ -32,7 +32,7 @@ export function PluginSelectorDropdown<P extends DropdownCompatiblePlugin>(
     <Dropdown
       label={props.label}
       items={dropdownItems}
-      selectedValue={selectedPlugin.userVisibleName}
+      selectedValue={selectedPlugin.registrationKey}
       onChange={setSelectedPlugin}
     />
   );
