@@ -1,8 +1,11 @@
 import * as React from "react";
 import "./App.css";
-import { NumberLanguagePluginManager } from "./plugins/NumberLanguagePlugins";
+import {
+  NumberLanguagePluginManager,
+  NumberWithWord,
+} from "./plugins/NumberLanguagePlugins";
 import { InputArea, InputAreaProps } from "./InputArea";
-import { SortPluginManager } from "./plugins/SortPlugins";
+import { SortPluginManager, SortPlugin } from "./plugins/SortPlugins";
 
 const languagePlugins = NumberLanguagePluginManager;
 const sortPlugins = SortPluginManager;
@@ -19,17 +22,16 @@ export function App() {
   );
 
   const [currentSortPlugin, setCurrentSortPlugin] = React.useState(
-    sortPlugins.getPluginsInOrder()[0]
+    sortPlugins.getPluginsInOrder()[0] as SortPlugin<NumberWithWord>
   );
 
-  const wordsForNumbers = React.useMemo(
-    () =>
-      currentLanguagePlugin.generateWordsForNumbers({
-        start: rangeStart,
-        end: rangeEnd,
-      }),
-    [currentLanguagePlugin, rangeStart, rangeEnd]
-  );
+  const sortedWordsForNumbers = React.useMemo(() => {
+    const words = currentLanguagePlugin.generateWordsForNumbers({
+      start: rangeStart,
+      end: rangeEnd,
+    });
+    return currentSortPlugin.sortItemsInPlace(words, (w) => w.value);
+  }, [currentLanguagePlugin, rangeStart, rangeEnd, currentSortPlugin]);
 
   const inputAreaProps: InputAreaProps = {
     languagePlugins,
@@ -61,7 +63,7 @@ export function App() {
 
       <div className="Results">
         Generated number words:
-        {wordsForNumbers.map((v) => (
+        {sortedWordsForNumbers.map((v) => (
           <ul key={v.value}>
             {v.value}: {v.numberAsWords}
           </ul>

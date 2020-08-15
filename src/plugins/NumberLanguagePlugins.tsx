@@ -7,10 +7,12 @@ export type NumberLanguagePluginInput = {
   end: number;
 };
 
-export type NumberLanguagePluginOutput = ReadonlyArray<{
+export type NumberWithWord = {
   value: number;
   numberAsWords: string;
-}>;
+};
+
+export type NumberLanguagePluginOutput = NumberWithWord[];
 
 export type GenerateWordsForNumbers = (
   input: NumberLanguagePluginInput

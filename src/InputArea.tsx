@@ -14,10 +14,8 @@ export type InputAreaProps = {
     React.SetStateAction<NumberLanguagePlugin>
   >;
   sortPlugins: typeof SortPluginManager;
-  currentSortPlugin: SortPlugin<unknown>;
-  setCurrentSortPlugin: React.Dispatch<
-    React.SetStateAction<SortPlugin<unknown>>
-  >;
+  currentSortPlugin: SortPlugin<any>;
+  setCurrentSortPlugin: React.Dispatch<React.SetStateAction<SortPlugin<any>>>;
   rangeStart: number;
   setRangeStart: React.Dispatch<React.SetStateAction<number>>;
   rangeEnd: number;
