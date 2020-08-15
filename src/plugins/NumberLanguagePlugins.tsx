@@ -1,8 +1,6 @@
 import { PluginManager, BasePlugin } from "./PluginManager";
-import {
-  ArabicNumerals,
-  NegativeNumerals,
-} from "../numberLanguage/ArabicNumerals";
+import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
+import { EnglishWords } from "../numberLanguage/EnglishWords";
 
 export type NumberLanguagePluginInput = {
   start: number;
@@ -33,13 +31,8 @@ export const NumberLanguagePluginManager = new PluginManager<
     generateWordsForNumbers: ArabicNumerals,
   },
   {
-    registrationKey: "negative",
-    userVisibleName: "Negative numbers",
-    generateWordsForNumbers: NegativeNumerals,
+    registrationKey: "english",
+    userVisibleName: "English Words",
+    generateWordsForNumbers: EnglishWords,
   }
 );
-
-// TODO:
-// Make a plugin manager for number languages,
-// and put in Arabic numerals.
-// Then show the results on the main page.

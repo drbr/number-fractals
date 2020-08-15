@@ -1,10 +1,11 @@
 import range from "./Range";
 import { GenerateWordsForNumbers } from "../plugins/NumberLanguagePlugins";
+import { toWords } from "number-to-words";
 
-export const ArabicNumerals: GenerateWordsForNumbers = ({ start, end }) => {
+export const EnglishWords: GenerateWordsForNumbers = ({ start, end }) => {
   const numbers = range({ start, end });
   return numbers.map((x) => ({
     value: x,
-    numberAsWords: String(x),
+    numberAsWords: toWords(x),
   }));
 };
