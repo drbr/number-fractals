@@ -1,2 +1,30 @@
 .App {
 }
+
+.Selectors,
+.Chosen,
+.Results {
+  padding: 15px;
+}
+
+.Selectors > div {
+  padding: 5px;
+}
+
+.Selectors input {
+  margin-right: 15px;
+}
+
+.Results {
+  display: flex;
+  flex-direction: row;
+}
+
+.Results .List {
+  width: 300px;
+}
+
+.Results .Graph {
+  background-color: pink;
+  flex: 1;
+}

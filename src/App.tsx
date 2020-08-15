@@ -6,9 +6,11 @@ import {
 } from "./plugins/NumberLanguagePlugins";
 import { InputArea, InputAreaProps } from "./InputArea";
 import { SortPluginManager, SortPlugin } from "./plugins/SortPlugins";
+import { GraphPluginManager } from "./plugins/GraphPlugins";
 
 const languagePlugins = NumberLanguagePluginManager;
 const sortPlugins = SortPluginManager;
+const graphPlugins = GraphPluginManager;
 
 const initialRangeStart = 1;
 const initialRangeEnd = 10;
@@ -23,6 +25,10 @@ export function App() {
 
   const [currentSortPlugin, setCurrentSortPlugin] = React.useState(
     sortPlugins.getPluginsInOrder()[0] as SortPlugin<NumberWithWord>
+  );
+
+  const [currentGraphPlugin, setCurrentGraphPlugin] = React.useState(
+    graphPlugins.getPluginsInOrder()[0]
   );
 
   const sortedWordsForNumbers = React.useMemo(() => {
@@ -40,6 +46,9 @@ export function App() {
     sortPlugins,
     currentSortPlugin,
     setCurrentSortPlugin,
+    graphPlugins,
+    currentGraphPlugin,
+    setCurrentGraphPlugin,
     rangeStart,
     setRangeStart,
     rangeEnd,
@@ -58,16 +67,20 @@ export function App() {
             Number range: [ {rangeStart}, {rangeEnd} ]
           </li>
           <li>Sort: {currentSortPlugin.userVisibleName}</li>
+          <li>Graph library: {currentGraphPlugin.userVisibleName}</li>
         </ul>
       </div>
 
       <div className="Results">
-        Generated number words:
-        {sortedWordsForNumbers.map((v) => (
-          <ul key={v.value}>
-            {v.value}: {v.numberAsWords}
-          </ul>
-        ))}
+        <div className="List">
+          Generated number words:
+          {sortedWordsForNumbers.map((v) => (
+            <ul key={v.value}>
+              {v.value}: {v.numberAsWords}
+            </ul>
+          ))}
+        </div>
+        <div className="Graph">Graph goes here!</div>
       </div>
     </div>
   );
