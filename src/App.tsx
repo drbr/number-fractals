@@ -1,31 +1,28 @@
 import * as React from "react";
 import "./App.css";
 import { NumberLanguagePluginManager } from "./plugins/NumberLanguagePlugins";
-import { Dropdown, adaptPluginToDropdownItems } from "./components/Dropdown";
+import { PluginSelectorDropdown } from "./components/PluginSelectorDropdown";
 
 const languagePlugins = NumberLanguagePluginManager;
-const languagesDropdownItems = adaptPluginToDropdownItems(languagePlugins);
 
 export function App() {
-  const [currentLanguage, setCurrentLanguage] = React.useState(
+  const [currentLanguagePlugin, setCurrentLanguagePlugin] = React.useState(
     languagePlugins.getPluginsInOrder()[0]
   );
 
   return (
     <div className="App">
-      <Dropdown
+      <PluginSelectorDropdown
         label="Select a number language: "
-        items={languagesDropdownItems}
-        selectedValue={currentLanguage.userVisibleName}
-        onChange={(value) =>
-          setCurrentLanguage(languagePlugins.getPluginByKey(value)!)
-        }
+        pluginManager={languagePlugins}
+        selectedPlugin={currentLanguagePlugin}
+        onChange={setCurrentLanguagePlugin}
       />
 
       <div>
         Chosen selections:
         <ul>
-          <li>Language: {currentLanguage.userVisibleName}</li>
+          <li>Language: {currentLanguagePlugin.userVisibleName}</li>
         </ul>
       </div>
     </div>
