@@ -5,18 +5,37 @@ import { Dropdown, DropdownItem } from "./components/Dropdown";
 import { BasePlugin, PluginManager } from "./plugins/PluginManager";
 
 export function App() {
-  const languageDropdownItems = adaptPluginToDropdownItems(
-    NumberLanguagePluginManager
+  const { languagesPlugin, languagesDropdownItems } = React.useMemo(
+    getPlugins,
+    []
   );
+
+  const [language, setLanguage] = React.useState(
+    languagesPlugin.getPluginsInOrder()[0].registrationKey
+  );
+
+  function callback(value: string) {
+    setLanguage(value);
+  }
 
   return (
     <div className="App">
       <Dropdown
-        items={languageDropdownItems}
         label="Select a number language: "
+        items={languagesDropdownItems}
+        selectedValue={language}
+        onChange={callback}
       />
 
-      <p>Can I see this?</p>
+      <div>
+        Chosen selections:
+        <ul>
+          <li>
+            Language:
+            {languagesPlugin.getPluginByKey(language)?.userVisibleName}
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -30,4 +49,17 @@ function adaptPluginToDropdownItems(
     value: p.registrationKey,
     name: p.userVisibleName,
   }));
+}
+
+function getPlugins() {
+  const languagesPlugin = NumberLanguagePluginManager;
+  const languagesDropdownItems = adaptPluginToDropdownItems(languagesPlugin);
+
+  const chosenNumberRange = { start: 1, end: 10 };
+
+  return {
+    languagesPlugin,
+    languagesDropdownItems,
+    chosenNumberRange,
+  };
 }

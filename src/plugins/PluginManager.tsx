@@ -22,7 +22,7 @@ export class PluginManager<P extends BasePlugin> {
    * @param plugin The plugin
    */
   public registerPlugin(plugin: P): void {
-    if (this.getPluginByName(plugin.registrationKey)) {
+    if (this.getPluginByKey(plugin.registrationKey)) {
       throw new Error(
         `Cannot register plugin; a plugin with name ${plugin.registrationKey} has already been registered.`
       );
@@ -47,9 +47,9 @@ export class PluginManager<P extends BasePlugin> {
     return this.registeredPlugins;
   }
 
-  public getPluginByName(name: string): P | undefined {
+  public getPluginByKey(key: string): P | undefined {
     const plugin = this.registeredPlugins.find(
-      (p) => p.registrationKey === name
+      (p) => p.registrationKey === key
     );
     return plugin;
   }
