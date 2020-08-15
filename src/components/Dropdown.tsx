@@ -1,5 +1,6 @@
 import * as React from "react";
 import { generateUniqueId } from "../utils/generateId";
+import { BasePlugin, PluginManager } from "../plugins/PluginManager";
 
 export type DropdownItem = {
   value: string;
@@ -33,4 +34,15 @@ export function Dropdown(props: DropdownProps) {
       </select>
     </div>
   );
+}
+
+type DropdownCompatiblePlugin = BasePlugin & { userVisibleName: string };
+
+export function adaptPluginToDropdownItems(
+  plugins: PluginManager<DropdownCompatiblePlugin>
+): ReadonlyArray<DropdownItem> {
+  return plugins.getPluginsInOrder().map((p) => ({
+    value: p.registrationKey,
+    name: p.userVisibleName,
+  }));
 }
