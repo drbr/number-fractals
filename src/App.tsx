@@ -1,11 +1,8 @@
 import * as React from "react";
 import "./App.css";
-import {
-  NumberLanguagePluginManager,
-  NumberWithWord,
-} from "./plugins/NumberLanguagePlugins";
+import { NumberLanguagePluginManager } from "./plugins/NumberLanguagePlugins";
 import { InputArea, InputAreaProps } from "./InputArea";
-import { SortPluginManager, SortPlugin } from "./plugins/SortPlugins";
+import { SortPluginManager } from "./plugins/SortPlugins";
 import { GraphPluginManager } from "./plugins/GraphPlugins";
 
 const languagePlugins = NumberLanguagePluginManager;
@@ -24,7 +21,7 @@ export function App() {
   );
 
   const [currentSortPlugin, setCurrentSortPlugin] = React.useState(
-    sortPlugins.getPluginsInOrder()[0] as SortPlugin<NumberWithWord>
+    sortPlugins.getPluginsInOrder()[0]
   );
 
   const [currentGraphPlugin, setCurrentGraphPlugin] = React.useState(
@@ -36,7 +33,7 @@ export function App() {
       start: rangeStart,
       end: rangeEnd,
     });
-    return currentSortPlugin.sortItemsInPlace(words, (w) => w.value);
+    return currentSortPlugin.sortItemsInPlace(words);
   }, [currentLanguagePlugin, rangeStart, rangeEnd, currentSortPlugin]);
 
   const graphElement = React.useMemo(

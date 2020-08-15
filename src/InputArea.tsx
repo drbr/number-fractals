@@ -15,8 +15,8 @@ export type InputAreaProps = {
     React.SetStateAction<NumberLanguagePlugin>
   >;
   sortPlugins: typeof SortPluginManager;
-  currentSortPlugin: SortPlugin<any>;
-  setCurrentSortPlugin: React.Dispatch<React.SetStateAction<SortPlugin<any>>>;
+  currentSortPlugin: SortPlugin;
+  setCurrentSortPlugin: React.Dispatch<React.SetStateAction<SortPlugin>>;
   graphPlugins: typeof GraphPluginManager;
   currentGraphPlugin: GraphPlugin;
   setCurrentGraphPlugin: React.Dispatch<React.SetStateAction<GraphPlugin>>;

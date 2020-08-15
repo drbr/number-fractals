@@ -1,10 +1,11 @@
 import { BasePlugin, PluginManager } from "./PluginManager";
+import { NumberWithWord } from "./NumberLanguagePlugins";
 
-export interface SortPlugin<T> extends BasePlugin {
-  sortItemsInPlace: (items: T[], getNumber: (t: T) => number) => T[];
+export interface SortPlugin extends BasePlugin {
+  sortItemsInPlace: (items: NumberWithWord[]) => NumberWithWord[];
 }
 
-export const SortPluginManager = new PluginManager<SortPlugin<unknown>>(
+export const SortPluginManager = new PluginManager<SortPlugin>(
   {
     registrationKey: "asc",
     userVisibleName: "Ascending",
@@ -17,12 +18,24 @@ export const SortPluginManager = new PluginManager<SortPlugin<unknown>>(
   }
 );
 
-function sortAscending<T>(items: T[], getNumber: (t: T) => number): T[] {
-  items.sort((a, z) => getNumber(a) - getNumber(z));
+function sortAscending(items: NumberWithWord[]): NumberWithWord[] {
+  items.sort((a, z) =>
+    a.numberAsWords < z.numberAsWords
+      ? -1
+      : a.numberAsWords > z.numberAsWords
+      ? 1
+      : 0
+  );
   return items;
 }
 
-function sortDescending<T>(items: T[], getNumber: (t: T) => number): T[] {
-  items.sort((a, z) => getNumber(z) - getNumber(a));
+function sortDescending(items: NumberWithWord[]): NumberWithWord[] {
+  items.sort((a, z) =>
+    a.numberAsWords < z.numberAsWords
+      ? 1
+      : a.numberAsWords > z.numberAsWords
+      ? -1
+      : 0
+  );
   return items;
 }

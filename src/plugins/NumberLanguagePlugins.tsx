@@ -1,22 +1,14 @@
 import { PluginManager, BasePlugin } from "./PluginManager";
 import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
 import { EnglishWords } from "../numberLanguage/EnglishWords";
-
-export type NumberLanguagePluginInput = {
-  start: number;
-  end: number;
-};
+import { RangeParams } from "../numberLanguage/Range";
 
 export type NumberWithWord = {
   value: number;
   numberAsWords: string;
 };
 
-export type NumberLanguagePluginOutput = NumberWithWord[];
-
-export type GenerateWordsForNumbers = (
-  input: NumberLanguagePluginInput
-) => NumberLanguagePluginOutput;
+export type GenerateWordsForNumbers = (input: RangeParams) => NumberWithWord[];
 
 /** Return the numbers from start to end, inclusive, in the language. */
 export interface NumberLanguagePlugin extends BasePlugin {
@@ -27,13 +19,13 @@ export const NumberLanguagePluginManager = new PluginManager<
   NumberLanguagePlugin
 >(
   {
-    registrationKey: "arabic",
-    userVisibleName: "Arabic Numerals",
-    generateWordsForNumbers: ArabicNumerals,
-  },
-  {
     registrationKey: "english",
     userVisibleName: "English Words",
     generateWordsForNumbers: EnglishWords,
+  },
+  {
+    registrationKey: "arabic",
+    userVisibleName: "Arabic Numerals",
+    generateWordsForNumbers: ArabicNumerals,
   }
 );
