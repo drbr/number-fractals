@@ -39,6 +39,11 @@ export function App() {
     return currentSortPlugin.sortItemsInPlace(words, (w) => w.value);
   }, [currentLanguagePlugin, rangeStart, rangeEnd, currentSortPlugin]);
 
+  const graphElement = React.useMemo(
+    () => currentGraphPlugin.graphItems(sortedWordsForNumbers),
+    [currentGraphPlugin, sortedWordsForNumbers]
+  );
+
   const inputAreaProps: InputAreaProps = {
     languagePlugins,
     currentLanguagePlugin,
@@ -80,7 +85,7 @@ export function App() {
             </ul>
           ))}
         </div>
-        <div className="Graph">Graph goes here!</div>
+        <div className="Graph">{graphElement}</div>
       </div>
     </div>
   );
