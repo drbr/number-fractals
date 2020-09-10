@@ -11,7 +11,7 @@ const sortPlugins = SortPluginManager;
 const graphPlugins = GraphPluginManager;
 
 const initialRangeStart = 1;
-const initialRangeEnd = 10;
+const initialRangeEnd = 100;
 
 export function App() {
   const [rangeStart, setRangeStart] = React.useState(initialRangeStart);
@@ -77,7 +77,7 @@ export function App() {
       <div className="Results">
         <WordList
           sortedWordsForNumbers={sortedWordsForNumbers}
-          display={false}
+          display={true}
         />
         <div className="Graph">{graphElement}</div>
       </div>
