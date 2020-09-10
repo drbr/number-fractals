@@ -1,8 +1,8 @@
-const ghpages = require('gh-pages');
-const path = require('path');
+const ghpages = require("gh-pages");
+const path = require("path");
 
-const pathToPublish = path.join(process.cwd(), 'build');
+const pathToPublish = path.join(process.cwd(), "build");
 
 ghpages.publish(pathToPublish, {
-  message: 'Publish to gh-pages',
+  message: "Publish to gh-pages",
 });
