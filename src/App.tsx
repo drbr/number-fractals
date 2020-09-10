@@ -39,9 +39,27 @@ export function App() {
   }, [currentLanguagePlugin, rangeStart, rangeEnd, currentSortPlugin]);
 
   const graphElement = React.useMemo(
-    () => currentGraphPlugin.graphItems(sortedWordsForNumbers),
+    () =>
+      React.createElement(currentGraphPlugin.graphComponent, {
+        values: sortedWordsForNumbers,
+      }),
     [currentGraphPlugin, sortedWordsForNumbers]
   );
+
+  // React Hooks Linter seems to not recognize JSX component names as things
+  // that could change. Is this legitimate??
+  /*
+  const graphElement2 = React.useMemo(
+    () => <currentGraphPlugin.graphComponent values={sortedWordsForNumbers} />,
+    [currentGraphPlugin, sortedWordsForNumbers]
+  );
+
+  const GraphElement3Component = currentGraphPlugin.graphComponent;
+  const graphElement3 = React.useMemo(
+    () => <GraphElement3Component values={sortedWordsForNumbers} />,
+    [GraphElement3Component, sortedWordsForNumbers]
+  );
+  */
 
   const inputAreaProps: InputAreaProps = {
     languagePlugins,

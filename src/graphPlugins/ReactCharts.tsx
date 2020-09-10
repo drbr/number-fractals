@@ -1,6 +1,6 @@
 import * as React from "react";
-import { GraphItems } from "../plugins/GraphPlugins";
+import { GraphProps } from "../plugins/GraphPlugins";
 
-export const GraphWithReactCharts: GraphItems = function GraphWithReactCharts() {
+export const GraphWithReactCharts: React.FC<GraphProps> = function GraphWithReactCharts() {
   return <>react-charts, sadly, does not support Typescript!</>;
 };

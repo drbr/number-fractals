@@ -3,12 +3,12 @@ import { BasePlugin, PluginManager } from "./PluginManager";
 import { GraphWithReactCharts } from "../graphPlugins/ReactCharts";
 import { GraphWithChartJs } from "../graphPlugins/ChartJs";
 
-export type GraphItems = (
-  values: ReadonlyArray<NumberWithWord>
-) => React.ReactElement;
+export type GraphProps = {
+  values: ReadonlyArray<NumberWithWord>;
+};
 
 export interface GraphPlugin extends BasePlugin {
-  graphItems: GraphItems;
+  graphComponent: React.FC<GraphProps>;
 }
 
 /*
@@ -20,11 +20,11 @@ export const GraphPluginManager = new PluginManager<GraphPlugin>(
   {
     registrationKey: "react-charts-js",
     userVisibleName: "React Chart.js",
-    graphItems: GraphWithChartJs,
+    graphComponent: GraphWithChartJs,
   },
   {
     registrationKey: "react-charts",
     userVisibleName: "react-charts (TanStack)",
-    graphItems: GraphWithReactCharts,
+    graphComponent: GraphWithReactCharts,
   }
 );

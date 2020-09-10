@@ -1,20 +1,20 @@
 import * as React from "react";
-import { GraphItems } from "../plugins/GraphPlugins";
+import { GraphProps } from "../plugins/GraphPlugins";
 import { Bar } from "react-chartjs-2";
 
-export const GraphWithChartJs: GraphItems = function GraphWithReactCharts(
-  data
-) {
-  const numberWords = data.map((d) => d.numberAsWords);
-  const values = data.map((d) => d.value);
+export const GraphWithChartJs: React.FC<GraphProps> = function GraphWithReactCharts({
+  values,
+}) {
+  const numberWords = values.map((d) => d.numberAsWords);
+  const numberValues = values.map((d) => d.value);
 
   const chartData = {
-    labels: values,
+    labels: numberValues,
     datasets: [
       {
         label: "Numeric value",
         backgroundColor: "#A456CB",
-        data: values,
+        data: numberValues,
         minBarLength: 10,
       },
     ],
