@@ -24,11 +24,14 @@ export type InputAreaProps = {
   setRangeStart: React.Dispatch<React.SetStateAction<number>>;
   rangeEnd: number;
   setRangeEnd: React.Dispatch<React.SetStateAction<number>>;
+  showList: boolean;
+  setShowList: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function InputArea(props: InputAreaProps) {
   const startLabelId = React.useMemo(() => generateUniqueId(), []);
   const endLabelId = React.useMemo(() => generateUniqueId(), []);
+  const showListId = React.useMemo(() => generateUniqueId(), []);
 
   return (
     <div className="Selectors">
@@ -48,7 +51,9 @@ export function InputArea(props: InputAreaProps) {
           value={props.rangeStart}
           onChange={(event) => props.setRangeStart(Number(event.target.value))}
         />
+      </div>
 
+      <div>
         <label id={endLabelId}>End value: </label>
         <input
           aria-labelledby={endLabelId}
@@ -72,6 +77,15 @@ export function InputArea(props: InputAreaProps) {
         selectedPlugin={props.currentGraphPlugin}
         onChange={props.setCurrentGraphPlugin}
       />
+
+      <div>
+        <label id={showListId}>Show list: </label>
+        <input
+          type="checkbox"
+          checked={props.showList}
+          onChange={(event) => props.setShowList(event.target.checked)}
+        />
+      </div>
     </div>
   );
 }

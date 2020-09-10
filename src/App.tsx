@@ -16,6 +16,7 @@ const initialRangeEnd = 100;
 export function App() {
   const [rangeStart, setRangeStart] = React.useState(initialRangeStart);
   const [rangeEnd, setRangeEnd] = React.useState(initialRangeEnd);
+  const [showList, setShowList] = React.useState(true);
 
   const [currentLanguagePlugin, setCurrentLanguagePlugin] = React.useState(
     languagePlugins.getPluginsInOrder()[0]
@@ -56,6 +57,8 @@ export function App() {
     setRangeStart,
     rangeEnd,
     setRangeEnd,
+    showList,
+    setShowList,
   };
 
   return (
@@ -79,7 +82,7 @@ export function App() {
       <div className="Results">
         <WordList
           sortedWordsForNumbers={sortedWordsForNumbers}
-          display={true}
+          display={showList}
         />
         <div className="Graph">{graphElement}</div>
       </div>
