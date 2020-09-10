@@ -1,6 +1,6 @@
 # Number fractal visualizer
 
-This is a quick little React app I threw together to investigate how numbers are ordered when sorted alphabetically by their English spelling.
+This is a quick little React app I threw together to investigate how numbers are ordered when sorted alphabetically by their English spelling. The layout is not optimized at all – don't try to look at this on a phone!
 
 I also used it as an opportunity to experiment with a "plugin" architecture, to make the app more easily expandable/configurable. Hence, it would be easy to add more chart libraries or languages in the future.
 

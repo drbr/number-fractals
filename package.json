@@ -50,5 +50,5 @@
     "gh-pages": "^3.1.0",
     "prettier": "^2.0.5"
   },
-  "homepage": "https://drbr.github.io/number-fractals"
+  "homepage": "https://drbr.github.io/number-fractals/"
 }
