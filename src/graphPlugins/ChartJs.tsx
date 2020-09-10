@@ -36,10 +36,8 @@ export const GraphWithChartJs: GraphItems = function GraphWithReactCharts(
         animation: {
           duration: 0,
         },
+        maintainAspectRatio: false,
       }}
-      // width={100}
-      // height={50}
-      // options={{ maintainAspectRatio: false }}
     />
   );
 };
