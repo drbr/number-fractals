@@ -75,7 +75,10 @@ export function App() {
       </div>
 
       <div className="Results">
-        <WordList sortedWordsForNumbers={sortedWordsForNumbers} />
+        <WordList
+          sortedWordsForNumbers={sortedWordsForNumbers}
+          display={false}
+        />
         <div className="Graph">{graphElement}</div>
       </div>
     </div>

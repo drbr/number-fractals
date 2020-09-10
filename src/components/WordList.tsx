@@ -2,10 +2,15 @@ import * as React from "react";
 import { NumberWithWord } from "../plugins/NumberLanguagePlugins";
 
 export type WordListProps = {
+  readonly display: boolean;
   readonly sortedWordsForNumbers: NumberWithWord[];
 };
 
 export function WordList(props: WordListProps) {
+  if (!props.display) {
+    return null;
+  }
+
   return (
     <div className="List">
       Generated number words:
@@ -17,4 +22,4 @@ export function WordList(props: WordListProps) {
     </div>
   );
 }
-// 
+//
