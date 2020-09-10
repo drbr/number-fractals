@@ -7,19 +7,25 @@ export type WordListProps = {
 };
 
 export function WordList(props: WordListProps) {
-  if (!props.display) {
-    return null;
-  }
+  if (!props.display) return null;
+  return <WordListDisplay {...props} />;
+}
+
+function WordListDisplay(props: WordListProps) {
+  const listItems = React.useMemo(
+    () =>
+      props.sortedWordsForNumbers.map((v) => (
+        <ul key={v.value}>
+          {v.value}: {v.numberAsWords}
+        </ul>
+      )),
+    [props.sortedWordsForNumbers]
+  );
 
   return (
     <div className="List">
       Generated number words:
-      {props.sortedWordsForNumbers.map((v) => (
-        <ul key={v.value}>
-          {v.value}: {v.numberAsWords}
-        </ul>
-      ))}
+      {listItems}
     </div>
   );
 }
-//
