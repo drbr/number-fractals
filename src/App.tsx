@@ -60,18 +60,20 @@ export function App() {
 
   return (
     <div className="App">
-      <InputArea {...inputAreaProps} />
+      <div className="InputsSection">
+        <InputArea {...inputAreaProps} />
 
-      <div className="Chosen">
-        Chosen selections:
-        <ul>
-          <li>Language: {currentLanguagePlugin.userVisibleName}</li>
-          <li>
-            Number range: [ {rangeStart}, {rangeEnd} ]
-          </li>
-          <li>Sort: {currentSortPlugin.userVisibleName}</li>
-          <li>Graph library: {currentGraphPlugin.userVisibleName}</li>
-        </ul>
+        <div className="Chosen">
+          Chosen selections:
+          <ul>
+            <li>Language: {currentLanguagePlugin.userVisibleName}</li>
+            <li>
+              Number range: [ {rangeStart}, {rangeEnd} ]
+            </li>
+            <li>Sort: {currentSortPlugin.userVisibleName}</li>
+            <li>Graph library: {currentGraphPlugin.userVisibleName}</li>
+          </ul>
+        </div>
       </div>
 
       <div className="Results">
