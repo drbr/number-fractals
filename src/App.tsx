@@ -4,6 +4,7 @@ import { NumberLanguagePluginManager } from "./plugins/NumberLanguagePlugins";
 import { InputArea, InputAreaProps } from "./InputArea";
 import { SortPluginManager } from "./plugins/SortPlugins";
 import { GraphPluginManager } from "./plugins/GraphPlugins";
+import { WordList } from "./components/WordList";
 
 const languagePlugins = NumberLanguagePluginManager;
 const sortPlugins = SortPluginManager;
@@ -74,14 +75,7 @@ export function App() {
       </div>
 
       <div className="Results">
-        <div className="List">
-          Generated number words:
-          {sortedWordsForNumbers.map((v) => (
-            <ul key={v.value}>
-              {v.value}: {v.numberAsWords}
-            </ul>
-          ))}
-        </div>
+        <WordList sortedWordsForNumbers={sortedWordsForNumbers} />
         <div className="Graph">{graphElement}</div>
       </div>
     </div>
