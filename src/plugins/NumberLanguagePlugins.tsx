@@ -74,6 +74,11 @@ export const NumberLanguagePluginManager = new PluginManager<
     generateEachNumberWord: (x) => writtenNumber(x, { lang: "tr" }),
   },
   {
+    registrationKey: "ukranian",
+    userVisibleName: "Ukranian",
+    generateEachNumberWord: (x) => writtenNumber(x, { lang: "uk" }),
+  },
+  {
     registrationKey: "vietnamese",
     userVisibleName: "Vietnamese",
     generateEachNumberWord: (x) => writtenNumber(x, { lang: "vi" }),
