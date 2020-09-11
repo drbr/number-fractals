@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/number-fractals/static/css/main.ae6c0f44.chunk.css",
-    "main.js": "/number-fractals/static/js/main.61da69f2.chunk.js",
-    "main.js.map": "/number-fractals/static/js/main.61da69f2.chunk.js.map",
+    "main.js": "/number-fractals/static/js/main.75971edf.chunk.js",
+    "main.js.map": "/number-fractals/static/js/main.75971edf.chunk.js.map",
     "runtime-main.js": "/number-fractals/static/js/runtime-main.27564318.js",
     "runtime-main.js.map": "/number-fractals/static/js/runtime-main.27564318.js.map",
-    "static/js/2.a106d5c1.chunk.js": "/number-fractals/static/js/2.a106d5c1.chunk.js",
-    "static/js/2.a106d5c1.chunk.js.map": "/number-fractals/static/js/2.a106d5c1.chunk.js.map",
+    "static/js/2.c1c598cc.chunk.js": "/number-fractals/static/js/2.c1c598cc.chunk.js",
+    "static/js/2.c1c598cc.chunk.js.map": "/number-fractals/static/js/2.c1c598cc.chunk.js.map",
     "index.html": "/number-fractals/index.html",
-    "precache-manifest.8564457c6d70629ee21e4a546832f489.js": "/number-fractals/precache-manifest.8564457c6d70629ee21e4a546832f489.js",
+    "precache-manifest.73a30ab77c522ef01c79a31229960d6e.js": "/number-fractals/precache-manifest.73a30ab77c522ef01c79a31229960d6e.js",
     "service-worker.js": "/number-fractals/service-worker.js",
     "static/css/main.ae6c0f44.chunk.css.map": "/number-fractals/static/css/main.ae6c0f44.chunk.css.map",
-    "static/js/2.a106d5c1.chunk.js.LICENSE.txt": "/number-fractals/static/js/2.a106d5c1.chunk.js.LICENSE.txt"
+    "static/js/2.c1c598cc.chunk.js.LICENSE.txt": "/number-fractals/static/js/2.c1c598cc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.27564318.js",
-    "static/js/2.a106d5c1.chunk.js",
+    "static/js/2.c1c598cc.chunk.js",
     "static/css/main.ae6c0f44.chunk.css",
-    "static/js/main.61da69f2.chunk.js"
+    "static/js/main.75971edf.chunk.js"
   ]
 }
