@@ -50,6 +50,7 @@ export const GraphWithChartJs: React.FC<GraphProps> = React.memo(
           animation: animationOptions,
           tooltips: tooltipOptions,
           maintainAspectRatio: false,
+          hover: { animationDuration: 50 },
         }}
       />
     );
