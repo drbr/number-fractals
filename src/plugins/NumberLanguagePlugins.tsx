@@ -1,6 +1,7 @@
 import { PluginManager, BasePlugin } from "./PluginManager";
 import writtenNumber from "written-number";
 import { toWords } from "number-to-words";
+import { de, pl } from "in-words";
 
 export type NumberWithWord = {
   value: number;
@@ -43,9 +44,19 @@ export const NumberLanguagePluginManager = new PluginManager<
     generateEachNumberWord: (x) => writtenNumber(x, { lang: "fr" }),
   },
   {
+    registrationKey: "german",
+    userVisibleName: "German",
+    generateEachNumberWord: de,
+  },
+  {
     registrationKey: "indonesian",
     userVisibleName: "Indonesian",
     generateEachNumberWord: (x) => writtenNumber(x, { lang: "id" }),
+  },
+  {
+    registrationKey: "polish",
+    userVisibleName: "Polish",
+    generateEachNumberWord: pl,
   },
   {
     registrationKey: "portuguese",
