@@ -5,6 +5,7 @@ import { InputArea, InputAreaProps } from "./InputArea";
 import { SortPluginManager } from "./plugins/SortPlugins";
 import { GraphPluginManager } from "./plugins/GraphPlugins";
 import { WordList } from "./components/WordList";
+import { generateWordsForNumbers } from "./numberLanguage/generateWordsForNumber";
 
 const languagePlugins = NumberLanguagePluginManager;
 const sortPlugins = SortPluginManager;
@@ -31,10 +32,13 @@ export function App() {
   );
 
   const sortedWordsForNumbers = React.useMemo(() => {
-    const words = currentLanguagePlugin.generateWordsForNumbers({
-      start: rangeStart,
-      end: rangeEnd,
-    });
+    const words = generateWordsForNumbers(
+      {
+        start: rangeStart,
+        end: rangeEnd,
+      },
+      currentLanguagePlugin.generateEachNumberWord
+    );
     return currentSortPlugin.sortItemsInPlace(words);
   }, [currentLanguagePlugin, rangeStart, rangeEnd, currentSortPlugin]);
 

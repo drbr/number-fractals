@@ -1,31 +1,35 @@
 import { PluginManager, BasePlugin } from "./PluginManager";
-import { ArabicNumerals } from "../numberLanguage/ArabicNumerals";
-import { EnglishWords } from "../numberLanguage/EnglishWords";
-import { RangeParams } from "../numberLanguage/Range";
+import writtenNumber from "written-number";
+import { toWords } from "number-to-words";
 
 export type NumberWithWord = {
   value: number;
   numberAsWords: string;
 };
 
-export type GenerateWordsForNumbers = (input: RangeParams) => NumberWithWord[];
+export type GenerateEachNumberWord = (num: number) => string;
 
 /** Return the numbers from start to end, inclusive, in the language. */
 export interface NumberLanguagePlugin extends BasePlugin {
-  generateWordsForNumbers: GenerateWordsForNumbers;
+  generateEachNumberWord: GenerateEachNumberWord;
 }
 
 export const NumberLanguagePluginManager = new PluginManager<
   NumberLanguagePlugin
 >(
   {
-    registrationKey: "english",
-    userVisibleName: "English Words",
-    generateWordsForNumbers: EnglishWords,
+    registrationKey: "english (n2w)",
+    userVisibleName: "English Words (number-to-words)",
+    generateEachNumberWord: toWords,
   },
   {
-    registrationKey: "arabic",
+    registrationKey: "french",
+    userVisibleName: "French Words (written-number)",
+    generateEachNumberWord: (x) => writtenNumber(x, { lang: "fr" }),
+  },
+  {
+    registrationKey: "arabic-numerals",
     userVisibleName: "Arabic Numerals",
-    generateWordsForNumbers: ArabicNumerals,
+    generateEachNumberWord: String,
   }
 );
